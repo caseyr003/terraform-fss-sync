@@ -15,18 +15,31 @@ variable "compartment_ocid" {
   description = "Compartment OCID where you want to provision resources in your Oracle Cloud Infrastructure account."
 }
 variable "region" {
-  description = "The SSH private key path which Terraform will added to SSH authorized_keys on Oracle Cloud Infrastructure Compute Instance."
+  description = "The region in your OCI account. Example: us-ashburn-1."
 }
 variable "subnet_ocid" {
   description = "The OCID of the Oracle Cloud Infrastructure Subnet where rsync instance will be created."
 }
-variable "ssh_public_key" {}
-variable "instance_shape" {}
-variable "image_ocid" {}
-variable "ssh_authorized_private_key" {}
-variable "volume_ocid" {}
-variable "database_ip" {}
+variable "ssh_public_key" {
+  description = "The SSH public key path which Terraform will added to SSH authorized_keys on Oracle Cloud Infrastructure Compute Instance."
+}
+variable "image_ocid" {
+  description = "The OCID of the image used for the compute instance."
+}
+variable "ssh_authorized_private_key" {
+  description = "The SSH private key path associated with the public key which Terraform will added to SSH authorized_keys on Oracle Cloud Infrastructure Compute Instance."
+}
+variable "volume_ocid" {
+  description = "The OCID of the block volume that will be attached to the compute instance."
+}
+variable "database_ip" {
+  description = "The IP of the database so that we can run the configuration script."
+}
 # Uses Default Value
+variable "instance_shape" {
+  description = "The OCID of the Oracle Cloud Infrastructure Subnet where rsync instance will be created."
+  default = "VM.Standard1.1"
+}
 variable "instance_count" {
   default="1"
 }
@@ -44,7 +57,7 @@ variable "mount_target_display_name" {
   default="mnt"
 }
 variable "ssh_private_key_path" {
-  description = "The SSH private key path which Terraform will added to SSH authorized_keys on Oracle Cloud Infrastructure Compute Instance."
+  description = "The SSH private key path on the Database where the configuration script will run."
 }
 variable "public_ip" {
   description = "The public IP addresss of the instance where you want to mount the FSS."

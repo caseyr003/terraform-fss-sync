@@ -12,8 +12,6 @@ export TF_VAR_region="Enter_Region_Here"
 export TF_VAR_subnet_ocid="Enter_Subnet_OCID_Here"
 #Enter the Image OCID of Your Custom Image
 export TF_VAR_image_ocid="Enter_Image_OCID_Here"
-#Enter Shape for Instance (Example: VM.Standard1.1)
-export TF_VAR_instance_shape="Enter_Shape_Here"
 #Enter Path to Your Private API Key
 export TF_VAR_private_key_path="Enter_Private_API_Key_Path_Here"
 #Enter Path to Your Public SSH Key
