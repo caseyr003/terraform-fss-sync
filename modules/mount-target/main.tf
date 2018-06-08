@@ -1,0 +1,7 @@
+# Create Mount Target on FSS
+resource "oci_file_storage_file_system" "file_system" {
+  availability_domain = "${var.availability_domain}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "${var.display_name}"
+  subnet_id = "${var.subnet_ocid}"
+}
