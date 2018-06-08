@@ -1,6 +1,7 @@
-# Terraform-Create-Image
 
-## This will configure a compute instance by running a script on the instance and then create a custom image from the instance on Oracle Cloud Infrastructure using Terraform.
+# Terraform-Clone-snapshot into a new File System of OCI
+
+## This terraform script/modules will replicate data from two OCI File Storage Service(FSS) shared File Systems. This will launch a OCI instance and copies the data from Source FSS to destination FSS using rsync cron job.
 
 
 # Software Requirements
@@ -21,9 +22,18 @@ https://github.com/oracle/terraform-provider-oci
 
 # Running
 
-The env.sh file needs to be updated with your tenancy specific information. To find more information on where to find the needed values please visit: https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm
+* The env.sh file needs to be updated with your: 
+  * Tenancy specific information
+  * Mount Target OCID 
+  * Golden Image Mount Target IP
+  * Backup Block Volume OCID
+  * Database Server Private IP
 
-The rsync.sh in the "userdata" folder is used to configure the compute instance. You can supply your own script by adding it to the "userdata" folder and updating the "prepare-image" module to run the new script on the instance.
+* The first step is to spin off a background job in the database server provided. The script(rman.sh) inside the database server will be kicked off to restore a backup database.
+
+* In the `modules/config-database/main.tf` file kindly mention the path to the rman.sh script.
+
+* The rsync Module is the part where we have the script to sync data between two FSS mounted. The script is in `modules/rsync/rsync.tpl`.
 
 Once you understand the code, have all the software requirements, and have satisfied the environmental requirements you can build your environment.
 
@@ -37,6 +47,8 @@ Note that Terraform generates a terraform.tfstate and terraform.tfstate.backup f
 
 If you want to tear down your environment, you can do that by running terraform destroy
 
+To find more information on where to find the needed values please visit: https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm
+
 Commands:
 
 [opc@orchestration demo]$	terraform init
@@ -48,3 +60,4 @@ Commands:
 [opc@orchestration demo]$	terraform apply
 
 [opc@orchestration demo]$	terraform destroy
+
