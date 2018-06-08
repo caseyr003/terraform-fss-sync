@@ -1,6 +1,7 @@
 userdata/keys
 terraform.*
 .terraform
+.terraform.tfstate.lock.info
 # -*- mode: gitignore; -*-
 *~
 \#*\#

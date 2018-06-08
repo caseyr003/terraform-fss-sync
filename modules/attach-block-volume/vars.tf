@@ -1,3 +1,3 @@
-variable "compartment_ocid" {}
+# Variables passed into compute module
 variable "instance_ocid" {}
 variable "volume_ocid" {}

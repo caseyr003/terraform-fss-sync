@@ -5,18 +5,11 @@
 # Create File Storage
 module "fss" {
   source = "./modules/fss"
-  availability_domain = "${var.ad}"
+  availability_domain = "${var.availability_domain}"
   display_name = "${var.file_system_display_name}"
   compartment_ocid = "${var.compartment_ocid}"
-}
-
-# Create Mount Target on FSS
-module "mount_target" {
-  source = "./modules/mount-target"
-  availability_domain = "${var.ad}"
-  display_name = "${var.mount_target_display_name}"
-  compartment_ocid = "${var.compartment_ocid}"
   subnet_ocid = "${var.subnet_ocid}"
+  export_path = "${var.export_path}"
 }
 
 # Create Compute Instance
@@ -36,8 +29,7 @@ module "compute" {
 
 # Attach Block Volume
 module "attach_block_volume" {
-  source = "./modules/compute-instance"
-  compartment_ocid = "${var.compartment_ocid}"
+  source = "./modules/attach-block-volume"
   instance_ocid = "${module.compute.instance_ocid}"
   volume_ocid = "${var.volume_ocid}"
 }
@@ -56,7 +48,7 @@ module "rsync" {
 
 # Configure Database Instance
 module "config_database" {
-  source = "./modules/config-instance"
+  source = "./modules/config-database"
   ssh_private_key = "${var.ssh_authorized_private_key}"
-  public_ip = "${var.database_public_ip}"
+  database_ip = "${var.database_ip}"
 }

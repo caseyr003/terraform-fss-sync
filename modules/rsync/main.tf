@@ -19,12 +19,12 @@ resource "null_resource" "rsync" {
     timeout     = "30m"
     host        = "${var.public_ip}"
     user        = "opc"
-    private_key = "${file(var.ssh_private_key_path)}"
+    private_key = "${file(var.ssh_private_key)}"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "sudo . ${data.template_file.rsync_file.rendered}"
+      "sudo ${data.template_file.rsync_file.rendered}"
     ]
   }
 }

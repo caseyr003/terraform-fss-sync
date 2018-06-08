@@ -10,8 +10,7 @@ export TF_VAR_fingerprint="Enter_Fingerprint_Here"
 export TF_VAR_region="Enter_Region_Here"
 #Enter Your Subnet OCID
 export TF_VAR_subnet_ocid="Enter_Subnet_OCID_Here"
-#Enter the Image OCID
-#Example for OEL 7.5 in Ashburn: ocid1.image.oc1.iad.aaaaaaaa6ybn2lkqp2ejhijhehf5i65spqh3igt53iyvncyjmo7uhm5235ca
+#Enter the Image OCID of Your Custom Image
 export TF_VAR_image_ocid="Enter_Image_OCID_Here"
 #Enter Shape for Instance (Example: VM.Standard1.1)
 export TF_VAR_instance_shape="Enter_Shape_Here"

@@ -2,7 +2,7 @@
 # RSYNC MODULE VARIABLES
 # ------------------------------------------------------------------------------------------------------------------------
 
-variable "ssh_private_key_path" {
+variable "ssh_private_key" {
   description = "The SSH private key path which Terraform will added to SSH authorized_keys on Oracle Cloud Infrastructure Compute Instance."
 }
 
